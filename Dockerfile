@@ -5,6 +5,15 @@ ARG CONDA_VERSION
 
 WORKDIR /workspace
 
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get remove -y --allow-change-held-packages \
+    ibverbs-utils \
+    libibverbs-dev \
+    libibverbs1 \
+    libmlx5-1 \
+    libnccl2 \
+    libnccl-dev
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
     apt-utils \
     autoconf \
