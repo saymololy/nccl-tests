@@ -28,8 +28,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
     pkg-config \
     python3-distutils \
     vim \
-    net-tools \
-    iputils-ping
+    net-tools
 
 RUN git clone https://github.com/NVIDIA/nccl-tests.git && \
     cd nccl-tests && \
