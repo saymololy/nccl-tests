@@ -43,7 +43,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
 #     cd nccl-tests && \
 #     make MPI=1 MPI_HOME=/usr/lib/x86_64-linux-gnu/openmpi
 
-RUN git clone https://github.com/NVIDIA/nccl-tests.git /opt/nccl-tests \
+RUN git clone https://github.com/NVIDIA/nccl-tests.git && \
     cd nccl-tests && \
     make -j $(nproc) \
     MPI=1 \
