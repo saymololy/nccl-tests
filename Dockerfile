@@ -45,7 +45,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
 
 RUN git clone https://github.com/NVIDIA/nccl-tests.git /opt/nccl-tests \
     cd nccl-tests && \
-    && make -j $(nproc) \
+    make -j $(nproc) \
     MPI=1 \
     MPI_HOME=/usr/lib/x86_64-linux-gnu/openmpi \
     CUDA_HOME=/usr/local/cuda \
