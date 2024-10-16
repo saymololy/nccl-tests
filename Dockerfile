@@ -84,7 +84,7 @@ RUN cd $HOME \
 
 ###################################################
 ## Install NCCL
-RUN git clone -b ${NCCL_VERSION} https://github.com/NVIDIA/nccl.git  /opt/nccl \
+RUN git clone https://github.com/NVIDIA/nccl.git  /opt/nccl \
     && cd /opt/nccl \
     && make -j $(nproc) src.build CUDA_HOME=/usr/local/cuda \
     NVCC_GENCODE="-gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -gencode=arch=compute_89,code=sm_89 -gencode=arch=compute_90,code=sm_90"
@@ -112,7 +112,7 @@ SHELL ["/bin/sh", "-c"]
 
 ###################################################
 ## Install NCCL-tests
-RUN git clone -b ${NCCL_TESTS_VERSION} https://github.com/NVIDIA/nccl-tests.git /opt/nccl-tests \
+RUN git clone https://github.com/NVIDIA/nccl-tests.git /opt/nccl-tests \
     && cd /opt/nccl-tests \
     && make -j $(nproc) \
     MPI=1 \
