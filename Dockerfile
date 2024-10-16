@@ -39,6 +39,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-unauthenticated \
     vim \
     net-tools
 
-RUN git clone https://github.com/NVIDIA/nccl-tests.git && \
+# RUN git clone https://github.com/NVIDIA/nccl-tests.git && \
+#     cd nccl-tests && \
+#     make MPI=1 MPI_HOME=/usr/lib/x86_64-linux-gnu/openmpi
+
+RUN git clone https://github.com/NVIDIA/nccl-tests.git /opt/nccl-tests \
     cd nccl-tests && \
-    make MPI=1 MPI_HOME=/usr/lib/x86_64-linux-gnu/openmpi
+    && make -j $(nproc) \
+    MPI=1 \
+    MPI_HOME=/usr/lib/x86_64-linux-gnu/openmpi \
+    CUDA_HOME=/usr/local/cuda \
+    NCCL_HOME=/opt/nccl/build \
+    NVCC_GENCODE="-gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -gencode=arch=compute_89,code=sm_89 -gencode=arch=compute_90,code=sm_90"
